@@ -8,7 +8,9 @@ Factory.define :user do |u|
 end
 
 Factory.define :session do |session|
- user = Factory.create(:user)
- session.username user.username
- session.password user.password
+ session.username do
+   user = Factory.create(:user, :password => 'defaultpassword')
+   user.username
+ end
+ session.password 'defaultpassword'
 end
